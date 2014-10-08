@@ -1,16 +1,16 @@
 class VendorsController < ApplicationController
 
-  # def index
-  #   @vendors = Vendor.all
-  # end
-
   def login
-    @vendor = Vendor.find(params[:vendor][:id])
-    if @vendor.name != params[:vendor][:name]
-      redirect_to "/404"
+    if good_id?(params[:id]) #id doesn't exist
+      @vendor = Vendor.find(params[:vendor][:id])
+      if @vendor.name != params[:vendor][:name] #id and name don't match
+        redirect_to "/404"
+      else
+        session[:vendor_id] = @vendor.id
+        redirect_to root_path
+      end
     else
-      session[:vendor_id] = @vendor.id
-      redirect_to root_path
+      redirect_to "/404"
     end
   end
 
@@ -40,6 +40,15 @@ class VendorsController < ApplicationController
     else
       render :new
       # refers to file name
+    end
+  end
+
+  def good_id?(id)
+    id_int = id.to_i
+    if (id_int > Vendor.count) || (id_int <= 0)
+      return false
+    else
+      return true
     end
   end
 

@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
 
-  get "/", to: "pages#home"
+  get  "/vendor",     to: "vendors#index"
+  post "/vendors",     to: "vendors#create"
+  get  "/signup",     to: "vendors#new"
 
-  get "/signup", to: "vendors#new"
-
+  root "pages#home"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

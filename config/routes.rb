@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   post "/vendors",     to: "vendors#create"
   get  "/signup",     to: "vendors#new"
 
+  get "/markets",     to: "markets#displayMarket" #displayMarket.html.erb
+
   root "pages#home"
 
   # The priority is based upon order of creation: first created -> highest priority.

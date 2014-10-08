@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get "/edit_market/:id", to: "markets#edit"
   post "/edit_market",    to: "markets#update"
 
-  root "pages#home"
+  root "vendors#login"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

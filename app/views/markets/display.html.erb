@@ -1,6 +1,7 @@
 This is the markets page.
 
 <% @markets.collect do |market| %>
-  <p> Market Name: <%= market.name %> </p>
-  <p> Location: <%= market.location %> </p>
+  <p> Market Name: <%= market.name %>
+      Location: <%= market.location %>
+    <a href ="/edit_market/<%=market.id%>"> Edit </a> </p>
 <% end %>

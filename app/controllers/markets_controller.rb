@@ -15,6 +15,10 @@ class MarketsController < ApplicationController
     else
       render :new
     end
-
   end
+
+  def by_id
+    @market = Market.find(params[:id])
+  end
+  
 end

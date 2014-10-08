@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get "/markets",       to: "markets#displayMarket" #displayMarket.html.erb
   get "/make_market" ,  to:  "markets#new"
   post "/markets",      to: "markets#create"
+  get "/market/:id",    to: "markets#by_id"
 
   root "pages#home"
 

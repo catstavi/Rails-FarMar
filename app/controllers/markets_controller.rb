@@ -1,6 +1,6 @@
 class MarketsController < ApplicationController
 
-  def displayMarket #name of the erb file
+  def display #name of the erb file
     @markets = Market.all
   end
 
@@ -18,7 +18,11 @@ class MarketsController < ApplicationController
   end
 
   def by_id
-    @market = Market.find(params[:id])
+    if params[:id].to_i > Market.count
+      redirect_to "/404"
+    else
+      @market = Market.find(params[:id])
+    end
   end
-  
+
 end

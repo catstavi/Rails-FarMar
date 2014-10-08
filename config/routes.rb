@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
   # get  "/vendor",     to: "vendors#index"
-  post "/vendors",        to: "vendors#create"
-  get  "/signup",         to: "vendors#new"
+  post "/vendors",     to: "vendors#create"
+  get  "/signup",     to: "vendors#new"
+  get "/vendors",     to: "vendors#display"
 
   get "/markets",         to: "markets#display" # market/display.html.erb
   get "/make_market" ,    to:  "markets#new"

@@ -5,7 +5,11 @@ class VendorsController < ApplicationController
   # end
 
   def login
-  ends
+  end
+
+  def display
+    @vendors = Vendor.all
+  end
 
   def new
     @vendor = Vendor.new

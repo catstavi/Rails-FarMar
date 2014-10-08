@@ -7,6 +7,9 @@ class VendorsController < ApplicationController
   def login
   end
 
+  def home
+  end
+
   def display
     @vendors = Vendor.all
   end

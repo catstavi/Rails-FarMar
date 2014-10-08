@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
 
   # get  "/vendor",     to: "vendors#index"
-  post "/vendors",     to: "vendors#create"
-  get  "/signup",     to: "vendors#new"
-  get "/vendors",     to: "vendors#display"
+  post "/vendors",        to: "vendors#create"
+  get  "/signup",         to: "vendors#new"
+  get "/vendors",         to: "vendors#display"
+  post "/vendors",          to: "vendors#login"
 
   get "/markets",         to: "markets#display" # market/display.html.erb
   get "/make_market" ,    to:  "markets#new"
@@ -12,7 +13,7 @@ Rails.application.routes.draw do
   get "/edit_market/:id", to: "markets#edit"
   post "/edit_market",    to: "markets#update"
 
-  root "vendors#login"
+  root "vendors#home"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -4,6 +4,9 @@ class VendorsController < ApplicationController
   #   @vendors = Vendor.all
   # end
 
+  def login
+  ends
+
   def new
     @vendor = Vendor.new
   end

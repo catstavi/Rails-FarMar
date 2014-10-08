@@ -1,15 +1,24 @@
 <h2>Hello Vendor Bat!</h2>
 
-Please log in!
+<% if defined? @vendor %>
+  You are currently signed in as <%= @vendor.name%>
+  <form action = "/logout" method = "POST">
+    <p> <%= submit_tag("Logout") %> </p>
+  </form>
+<% else %>
 
-<form action="/vendors" method="POST" accept-charset="utf-8">
-  Vendor Name
-  <input type="text" name="username" />
-  Vendor ID
-  <input type="text" name="vendor-id" />
+  Please log in!
 
-  <p><input type="submit" value="Login"></p>
-</form>
+  <form action="/login" method="POST" >
+    Vendor Name:
+    <input type="text" name="vendor[name]" />
+    Vendor ID:
+    <input type="text" name="vendor[id]" />
+
+    <p><input type="submit" value="Login"></p>
+  </form>
 
 
-<p>Or <a href="/signup">sign up<a>!</p>
+  <p>Or <a href="/signup">sign up<a>!</p>
+
+<% end %>

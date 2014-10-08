@@ -35,13 +35,15 @@ class MarketsController < ApplicationController
 
   def update
     # raise params.inspect
-    @market = Market.find(params[:market][:id])
-    @market.name = params[:market][:name]
-    @market.location = params[:market][:location]
-    if @market.save
-      redirect_to "/markets"
+    id_int = params[:market][:id].to_i
+    if id_int > Market.count || id_int < 0
+      redirect_to "/404" #user has editted ID field to one that doens't exit
     else
-      render :new
+      @market = Market.find(params[:market][:id])
+      @market.name = params[:market][:name]
+      @market.location = params[:market][:location]
+      @market.save
+      redirect_to "/markets"
     end
   end
 end

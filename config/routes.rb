@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   post "/vendors",        to: "vendors#create"
   get  "/signup",         to: "vendors#new"
   get "/vendors",         to: "vendors#display"
-  post "/vendors",          to: "vendors#login"
+  post "/login",          to: "vendors#login"
+  post "/logout",         to: "vendors#logout"
 
   get "/markets",         to: "markets#display" # market/display.html.erb
   get "/make_market" ,    to:  "markets#new"

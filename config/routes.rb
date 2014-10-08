@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   post "/vendors",     to: "vendors#create"
   get  "/signup",     to: "vendors#new"
 
-  get "/markets",     to: "markets#displayMarket" #displayMarket.html.erb
+  get "/markets",       to: "markets#displayMarket" #displayMarket.html.erb
+  get "/make_market" ,  to:  "markets#new"
+  post "/markets",      to: "markets#create"
 
   root "pages#home"
 

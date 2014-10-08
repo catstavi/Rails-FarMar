@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
 
   # get  "/vendor",     to: "vendors#index"
-  post "/vendors",     to: "vendors#create"
-  get  "/signup",     to: "vendors#new"
+  post "/vendors",        to: "vendors#create"
+  get  "/signup",         to: "vendors#new"
 
-  get "/markets",       to: "markets#display" # market/display.html.erb
-  get "/make_market" ,  to:  "markets#new"
-  post "/markets",      to: "markets#create"
-  get "/market/:id",    to: "markets#by_id"
+  get "/markets",         to: "markets#display" # market/display.html.erb
+  get "/make_market" ,    to:  "markets#new"
+  post "/markets",        to: "markets#create"
+  get "/market/:id",      to: "markets#by_id"
+  get "/edit_market/:id", to: "markets#edit"
+  post "/edit_market",    to: "markets#update"
 
   root "pages#home"
 

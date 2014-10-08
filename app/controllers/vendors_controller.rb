@@ -10,10 +10,11 @@ class VendorsController < ApplicationController
 
   def create
     @vendor = Vendor.new(params.require(:vendor).permit(:name))
-    if @vendor.save
+    if false #@vendor.save
       redirect_to root_path
     else
-      # redirect_to root_path
+      render :new
+      # refers to file name
     end
   end
 

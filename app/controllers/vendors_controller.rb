@@ -4,6 +4,10 @@ class VendorsController < ApplicationController
   #   @vendors = Vendor.all
   # end
 
+  def display
+    @vendors = Vendor.all
+  end
+
   def new
     @vendor = Vendor.new
   end

@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-  #belongs_to :vendor
+  belongs_to :vendor
   has_many :sales
-  has_many :vendors, :through => :sales
+  belongs_to :markets, :through => :vendors
 end

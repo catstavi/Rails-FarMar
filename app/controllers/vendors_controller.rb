@@ -1,8 +1,8 @@
 class VendorsController < ApplicationController
 
-  def index
-    @vendors = Vendor.all
-  end
+  # def index
+  #   @vendors = Vendor.all
+  # end
 
   def new
     @vendor = Vendor.new
@@ -10,7 +10,7 @@ class VendorsController < ApplicationController
 
   def create
     @vendor = Vendor.new(params.require(:vendor).permit(:name))
-    if false #@vendor.save
+    if @vendor.save
       redirect_to root_path
     else
       render :new

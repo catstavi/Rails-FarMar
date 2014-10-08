@@ -1,1 +1,6 @@
-This is the markets page
+This is the markets page.
+
+<% @markets.collect do |market| %>
+  <p> Market Name: <%= market.name %> </p>
+  <p> Location: <%= market.location %> </p>
+<% end %>

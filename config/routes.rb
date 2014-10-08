@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get  "/vendor",     to: "vendors#index"
+  # get  "/vendor",     to: "vendors#index"
   post "/vendors",     to: "vendors#create"
   get  "/signup",     to: "vendors#new"
 

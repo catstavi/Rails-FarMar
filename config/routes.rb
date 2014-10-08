@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   get "/", to: "pages#home"
 
-  get "/signup", to: "users#new"
+  get "/signup", to: "vendors#new"
 
 
   # The priority is based upon order of creation: first created -> highest priority.

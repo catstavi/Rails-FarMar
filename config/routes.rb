@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  # get  "/vendor",     to: "vendors#index"
+  # to-do: use validates for ids, use route names
+
   post "/vendors",            to: "vendors#create"
   get  "/signup",             to: "vendors#new"
   get "/vendors",             to: "vendors#display"
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
   get "/markets/:id",         to: "markets#by_id"
   get "/markets/:id/edit",    to: "markets#edit"
   put "/markets/:id",         to: "markets#update"
+  post "/mymarket/:id",       to: "vendors#set_market"
 
   root "vendors#home"
 

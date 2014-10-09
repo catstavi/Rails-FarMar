@@ -26,10 +26,10 @@ class MarketsController < ApplicationController
   end
 
   def edit
-    if params[:id].to_i > Market.count
-      redirect_to "/404"
-    else
+    if good_id?(params[:id])
       @market = Market.find(params[:id])
+    else
+      redirect_to "/markets"
     end
   end
 
@@ -43,16 +43,19 @@ class MarketsController < ApplicationController
     end
   end
 
-  def market_params
-    params.require(:market).permit(:name, :location)
-  end
+  private
 
-  def good_id?(id)
-    id_int = id.to_i
-    if (id_int > Vendor.count) || (id_int <= 0)
-      return false
-    else
-      return true
+    def market_params
+      params.require(:market).permit(:name, :location)
     end
-  end
+
+    def good_id?(id)
+      id_int = id.to_i
+      if (id_int > Vendor.count) || (id_int <= 0)
+        return false
+      else
+        return true
+      end
+    end
+
 end

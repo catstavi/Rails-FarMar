@@ -9,7 +9,7 @@ class MarketsController < ApplicationController
   end
 
   def create
-    @market = Market.new(params.require(:market).permit(:name, :location))
+    @market = Market.new(market_params)
     if @market.save
       redirect_to "/markets"
     else
@@ -34,16 +34,25 @@ class MarketsController < ApplicationController
   end
 
   def update
-    # raise params.inspect
-    id_int = params[:market][:id].to_i
-    if id_int > Market.count || id_int < 0
-      redirect_to "/404" #user has editted ID field to one that doens't exit
-    else
-      @market = Market.find(params[:market][:id])
-      @market.name = params[:market][:name]
-      @market.location = params[:market][:location]
-      @market.save
+    if good_id?(params[:id])
+      @market = Market.find(params[:id])
+      @market.update(market_params)
       redirect_to "/markets"
+    else
+      redirect_to "/404" #user has editted ID field to one that doens't exit
+    end
+  end
+
+  def market_params
+    params.require(:market).permit(:name, :location)
+  end
+
+  def good_id?(id)
+    id_int = id.to_i
+    if (id_int > Vendor.count) || (id_int <= 0)
+      return false
+    else
+      return true
     end
   end
 end

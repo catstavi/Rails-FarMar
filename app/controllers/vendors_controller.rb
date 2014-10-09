@@ -1,7 +1,7 @@
 class VendorsController < ApplicationController
 
   def login
-    if good_id?(params[:id]) #id doesn't exist
+    if good_id?(params[:vendor][:id]) #id doesn't exist
       @vendor = Vendor.find(params[:vendor][:id])
       if @vendor.name != params[:vendor][:name] #id and name don't match
         redirect_to "/404"

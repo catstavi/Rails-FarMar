@@ -1,8 +1,9 @@
 <h3>Edit Market #<%=@market.id%></h3>
 
-<form action= "/edit_market" method="POST">
+<form action= "/markets/<%=@market.id%>" method="POST">
+  <input type ="hidden" name="_method" value="PUT"/>
+  <!-- <input type="hidden" name="market[id]" value="<%=@market.id%>"/> -->
   Market Name: <input type="text" name="market[name]" value="<%=@market.name%>"/>
   Market Location: <input type="text" name="market[location]" value="<%=@market.location%>"/>
-  Market ID: <input type="text" name="market[id]" value="<%=@market.id%>"/> DO NOT CHANGE!
   <input type="submit" value="Update Market"/>
 </form>

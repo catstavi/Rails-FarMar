@@ -3,5 +3,6 @@ This is the markets page.
 <% @markets.collect do |market| %>
   <p> Market Name: <%= market.name %>
       Location: <%= market.location %>
-    <a href ="/edit_market/<%=market.id%>"> Edit </a> </p>
+    <a href ="/markets/<%=market.id%>/edit"> Edit </a>
+    <a href ="/markets/<%=market.id%>"> View Details </a> </p>
 <% end %>

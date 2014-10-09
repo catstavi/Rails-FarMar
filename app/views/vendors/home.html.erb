@@ -1,7 +1,14 @@
 <h2>Hello Vendor Bat!</h2>
 
 <% if defined? @vendor %>
-  You are currently signed in as <%= @vendor.name%>
+  You are signed in as <%= @vendor.name%>
+  <% if defined? @market %>
+  , with market <%= @market.name %>
+  <% else %>
+  . You have not currently selected a market. Select an existing market <a href="/markets">here</a>,
+  or add a new market <a href="/make_market">here</a>.
+  <% end %>
+
   <form action = "/logout" method = "POST">
     <p> <%= submit_tag("Logout") %> </p>
   </form>

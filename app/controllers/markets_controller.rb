@@ -2,6 +2,7 @@ class MarketsController < ApplicationController
 
   def display #name of the erb file
     @markets = Market.all
+    @vendor = logged_vendor
   end
 
   def new
@@ -18,41 +19,53 @@ class MarketsController < ApplicationController
   end
 
   def by_id
-    if params[:id].to_i > Market.count
-      redirect_to "/404"
-    else
-      @market = Market.find(params[:id])
-    end
+    @market = Market.find(params[:id])
+    @vendor = logged_vendor
+    vendors = Vendor.where("market_id = #{@market.id}")
+    @vendor_list = vendors_string(vendors)
   end
 
   def edit
-    if params[:id].to_i > Market.count
-      redirect_to "/404"
-    else
-      @market = Market.find(params[:id])
-    end
+    @market = Market.find(params[:id])
   end
 
   def update
-    if good_id?(params[:id])
-      @market = Market.find(params[:id])
+    if your_market?
       @market.update(market_params)
       redirect_to "/markets"
     else
-      redirect_to "/404" #user has editted ID field to one that doens't exit
+      redirect_to"/markets"
     end
   end
 
-  def market_params
-    params.require(:market).permit(:name, :location)
-  end
-
-  def good_id?(id)
-    id_int = id.to_i
-    if (id_int > Vendor.count) || (id_int <= 0)
-      return false
+  def delete
+    if your_market?      #only the owner of the product can delete it
+      @market.destroy
+      redirect_to "/markets"
     else
-      return true
+      redirect_to "/markets"
     end
   end
+
+  private
+
+    def market_params
+      params.require(:market).permit(:name, :location)
+    end
+
+    def your_market?
+      @market = Market.find(params[:id])
+      @vendor = logged_vendor
+      @vendor.market_id == @market.id ? true : false
+    end
+
+    def logged_vendor
+      Vendor.find(session[:vendor_id])
+    end
+
+    def vendors_string(vendors)
+      array = vendors.collect { |vendor| vendor.name }
+      array.join(', ')
+    end
+
 end

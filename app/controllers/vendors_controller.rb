@@ -17,6 +17,9 @@ class VendorsController < ApplicationController
   def home
     if session[:vendor_id] != nil
       @vendor = Vendor.find(session[:vendor_id])
+      if @vendor.market_id
+        @market = Market.find(@vendor.market_id)
+      end
     end
   end
 
@@ -42,6 +45,14 @@ class VendorsController < ApplicationController
       # refers to file name
     end
   end
+
+  def set_market
+    @vendor = Vendor.find(session[:vendor_id])
+    @vendor.update_attribute(:market_id, params[:id])
+    redirect_to "/markets"
+  end
+
+  private
 
   def good_id?(id)
     id_int = id.to_i

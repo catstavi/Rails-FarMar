@@ -1,0 +1,9 @@
+
+<h3> Add Your Product </h3>
+<form action= "/products" method="POST">
+
+  Product Name: <input type="text" name="product[name]" value="<%=@product.name%>"/>
+  <input type="hidden" name="product[vendor_id]" value="<%=@vendor.id%>" />
+  <input type="submit" value="Add Product"/>
+
+</form>

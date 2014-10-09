@@ -5,7 +5,8 @@
   <% if defined? @market %>
   , with market <%= @market.name %>
   <% else %>
-  . You have not currently selected a market.
+  . You have not currently selected a market. Select an existing market <a href="/markets">here</a>,
+  or add a new market <a href="/make_market">here</a>.
   <% end %>
 
   <form action = "/logout" method = "POST">

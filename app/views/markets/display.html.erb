@@ -5,7 +5,13 @@ This is the markets page.
       <!-- Location: <%= market.location %> -->
     <button> <a href ="/markets/<%=market.id%>/edit"> Edit </a></button>
     <button> <a href ="/markets/<%=market.id%>"> View Details </a></button> </p>
-    <form action= "/mymarket/<%=market.id%>" method="POST">
-      <input type="submit" value="Set As My Market"/>
-    </form>
+
+    <% if @vendor.market_id == market.id %>
+      (This is your market!)
+    <% else %>
+      <form action= "/markets/<%=market.id%>" method="POST">
+        <input type="submit" value="Set As My Market"/>
+      </form>
+
+    <% end %>
 <% end %>

@@ -14,7 +14,15 @@ Rails.application.routes.draw do
   get "/markets/:id",         to: "markets#by_id"
   get "/markets/:id/edit",    to: "markets#edit"
   put "/markets/:id",         to: "markets#update"
-  post "/mymarket/:id",       to: "vendors#set_market"
+  post "/markets/:id",       to: "vendors#set_market"
+
+  get "/products",            to: "products#display"
+  get "/products/new",        to: "products#new"
+  post "/products",           to: "products#create"
+  get "/products/:id",        to: "products#by_id"
+  get "/products/:id/edit",   to: "products#edit"
+  put "/products/:id",        to: "products#update"
+  delete "/products/:id",     to: "products#delete"
 
   root "vendors#home"
 

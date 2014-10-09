@@ -1,0 +1,8 @@
+<h3>Edit Product #<%=@product.id%></h3>
+
+<form action= "/products/<%=@product.id%>" method="POST">
+  <input type ="hidden" name="_method" value="PUT"/>
+  <!-- <input type="hidden" name="product[id]" value="<%=@product.id%>"/> -->
+  product Name: <input type="text" name="product[name]" value="<%=@product.name%>"/>
+  <input type="submit" value="Update Product"/>
+</form>

@@ -2,6 +2,7 @@ class MarketsController < ApplicationController
 
   def display #name of the erb file
     @markets = Market.all
+    @vendor = Vendor.find(session[:vendor_id])
   end
 
   def new
@@ -51,7 +52,7 @@ class MarketsController < ApplicationController
 
     def good_id?(id)
       id_int = id.to_i
-      if (id_int > Vendor.count) || (id_int <= 0)
+      if (id_int > Market.count) || (id_int <= 0)
         return false
       else
         return true

@@ -25,21 +25,13 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    if good_id?(params[:id])
-      @product = Product.find(params[:id])
-    else
-      redirect_to "/products"
-    end
+    @product = Product.find(params[:id])
   end
 
   def update
-    if good_id?(params[:id])
-      @product = Product.find(params[:id])
-      @product.update(product_params)
-      redirect_to "/products"
-    else
-      redirect_to "/404" #user has editted ID field to one that doens't exit
-    end
+    @product = Product.find(params[:id])
+    @product.update(product_params)
+    redirect_to "/products/#{params[:id]}"
   end
 
   def delete
@@ -57,15 +49,6 @@ class ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(:name, :vendor_id)
-  end
-
-  def good_id?(id)
-    id_int = id.to_i
-    if (id_int > Product.count) || (id_int <= 0)
-      return false
-    else
-      return true
-    end
   end
 
 end

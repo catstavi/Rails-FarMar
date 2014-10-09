@@ -1,3 +1,10 @@
 <h3><%= @product.name %> </h3>
 
 Vendor: <%= @this_vendor.name %>
+<p>
+  <button> <a href ="/products/<%=@product.id%>/edit"> Edit </a></button>
+  <form action= "/products/<%=@product.id%>" method="POST">
+    <input type ="hidden" name="_method" value="DELETE"/>
+    <input type="submit" value="Delete"/>
+  </form>
+</p>

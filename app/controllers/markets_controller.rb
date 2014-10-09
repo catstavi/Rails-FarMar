@@ -27,36 +27,19 @@ class MarketsController < ApplicationController
   end
 
   def edit
-    if good_id?(params[:id])
-      @market = Market.find(params[:id])
-    else
-      redirect_to "/markets"
-    end
+    @market = Market.find(params[:id])
   end
 
   def update
-    if good_id?(params[:id])
-      @market = Market.find(params[:id])
-      @market.update(market_params)
-      redirect_to "/markets"
-    else
-      redirect_to "/404" #user has editted ID field to one that doens't exit
-    end
+    @market = Market.find(params[:id])
+    @market.update(market_params)
+    redirect_to "/markets"
   end
 
   private
 
     def market_params
       params.require(:market).permit(:name, :location)
-    end
-
-    def good_id?(id)
-      id_int = id.to_i
-      if (id_int > Market.count) || (id_int <= 0)
-        return false
-      else
-        return true
-      end
     end
 
 end

@@ -1,11 +1,12 @@
 This is <%= @vendor.name %>'s products page.
 
 <% @products.collect do |product| %>
-  <p> Product Name: <%= product.name %>
-    <button> <a href ="/products/<%=product.id%>/edit"> Edit </a></button>
+    <p> Product Name: <%= product.name %>
     <button> <a href ="/products/<%=product.id%>"> View Details </a></button> </p>
+
+      <!-- <button> <a href ="/products/<%=product.id%>/edit"> Edit </a></button>
     <form action= "/products/<%=product.id%>" method="POST">
       <input type ="hidden" name="_method" value="DELETE"/>
       <input type="submit" value="Delete"/>
-    </form>
+    </form> -->
 <% end %>

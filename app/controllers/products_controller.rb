@@ -1,12 +1,12 @@
 class ProductsController < ApplicationController
 
   def display #name of the erb file
-    @vendor = Vendor.find(session[:vendor_id])
+    @vendor = logged_vendor
     @products = Product.where("vendor_id = #{session[:vendor_id]}")
   end
 
   def new
-    @vendor = Vendor.find(session[:vendor_id])
+    @vendor = logged_vendor
     @product = Market.new
   end
 
@@ -20,6 +20,7 @@ class ProductsController < ApplicationController
   end
 
   def by_id
+    @vendor = logged_vendor
     @product = Product.find(params[:id])
     @this_vendor = Vendor.find(@product.vendor_id)
   end
@@ -29,15 +30,16 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @product = Product.find(params[:id])
-    @product.update(product_params)
-    redirect_to "/products/#{params[:id]}"
+    if your_product?
+      @product.update(product_params)
+      redirect_to "/products/#{params[:id]}"
+    else
+      redirect_to "/products/#{params[:id]}"
+    end
   end
 
   def delete
-    @product = Product.find(params[:id])
-    @vendor = Vendor.find(session[:vendor_id])
-    if @product.vendor_id = @vendor.id      #only the owner of the product can delete it
+    if your_product?     #only the owner of the product can delete it
       @product.destroy
       redirect_to "/products"
     else
@@ -49,6 +51,16 @@ class ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(:name, :vendor_id)
+  end
+
+  def your_product?
+    @product = Product.find(params[:id])
+    @vendor = logged_vendor
+    @product.vendor_id == @vendor.id ? true : false
+  end
+
+  def logged_vendor
+    Vendor.find(session[:vendor_id])
   end
 
 end

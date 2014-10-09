@@ -49,7 +49,7 @@ class VendorsController < ApplicationController
   def set_market
     @vendor = Vendor.find(session[:vendor_id])
     @vendor.update_attribute(:market_id, params[:id])
-    redirect_to root_path
+    redirect_to "/markets"
   end
 
   private

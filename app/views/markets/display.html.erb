@@ -1,10 +1,8 @@
 This is the markets page.
 
 <% @markets.collect do |market| %>
-  <p> Market Name: <%= market.name %>
-      <!-- Location: <%= market.location %> -->
-    <button> <a href ="/markets/<%=market.id%>/edit"> Edit </a></button>
-    <button> <a href ="/markets/<%=market.id%>"> View Details </a></button> </p>
+  <p>
+    <a href ="/markets/<%=market.id%>"> <%= market.name %> </a>
 
     <% if @vendor.market_id == market.id %>
       (This is your market!)
@@ -12,6 +10,6 @@ This is the markets page.
       <form action= "/markets/<%=market.id%>" method="POST">
         <input type="submit" value="Set As My Market"/>
       </form>
-
     <% end %>
+  </p>
 <% end %>

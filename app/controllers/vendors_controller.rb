@@ -52,4 +52,30 @@ class VendorsController < ApplicationController
     end
   end
 
+
+  
+  def edit
+    # raise params.inspect
+    @vendor = Vendor.find(params[:id])
+  end
+
+
+
+  def update
+    #raise params.inspect
+    @vendor = Vendor.find(params[:id])
+    if @vendor.update(vendor_params)
+    redirect_to "/vendors" #changed here! - this should help redirect to /vendors after an edit has been made
+
+    else
+      render :edit
+    end
+  end
+
+
+  def vendor_params
+
+    params.require(:vendor).permit(:name)
+  end
+
 end

@@ -1,6 +1,11 @@
+<body id="showVendors">
 This is the vendors page.
 
 <% @vendors.collect do |vendor| %>
 	<p>vendor name: <%= vendor.name %> </p>
 
+	<a href ="/vendors/<%=vendor.id%>/edit"> Edit </a>
+
 <% end %>
+
+</body>

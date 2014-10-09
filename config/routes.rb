@@ -14,6 +14,10 @@ Rails.application.routes.draw do
   get "/markets/:id/edit",    to: "markets#edit"
   put "/markets/:id",         to: "markets#update"
 
+
+  get "/vendors/:id/edit", to: "vendors#edit", as: :edit_vendor
+  put "/vendors/:id",    to: "vendors#update"
+
   root "vendors#home"
 
   # The priority is based upon order of creation: first created -> highest priority.

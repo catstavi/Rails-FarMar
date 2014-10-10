@@ -21,10 +21,14 @@ class MarketsController < ApplicationController
   end
 
   def by_id
-    @market = Market.find(params[:id])
     @vendor = logged_vendor
-    vendors = Vendor.where("market_id = #{@market.id}")
-    @vendor_list = vendors_string(vendors)
+    @market = Market.find_by(id: params[:id])
+    if @market
+      vendors = Vendor.where("market_id = #{@market.id}")
+      @vendor_list = make_joined_string(vendors)
+    else
+      redirect_to "/markets"
+    end
   end
 
   def edit

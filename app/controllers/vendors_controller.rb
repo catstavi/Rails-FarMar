@@ -45,10 +45,15 @@ class VendorsController < ApplicationController
   end
 
   def by_id
-    @this_vendor = Vendor.find(params[:id])
     @vendor = logged_vendor
-    #vendors = Vendor.where("market_id = #{@market.id}")
-    #@vendor_list = vendors_string(vendors)
+    @this_vendor = Vendor.find_by(params[:id])
+    if @this_vendor
+      @market = Market.where("id = #{@this_vendor.market_id}")
+      products = Product.where("vendor_id = #{@this_vendor.id}")
+      @products_list = make_joined_string(products)
+    else
+      redirect_to "/vendors"
+    end
   end
 
   private
@@ -63,7 +68,6 @@ class VendorsController < ApplicationController
     @vendor = Vendor.find(params[:id])
     if @vendor.update(vendor_params)
     redirect_to "/vendors" #changed here! - this should help redirect to /vendors after an edit has been made
-
     else
       render :edit
     end

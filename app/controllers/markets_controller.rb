@@ -2,7 +2,9 @@ class MarketsController < ApplicationController
 
   def display #name of the erb file
     @markets = Market.all
-    @vendor = logged_vendor
+    if logged_vendor
+      @vendor = logged_vendor
+    end
   end
 
   def new

@@ -25,9 +25,13 @@ class ProductsController < ApplicationController
 
   def by_id
     @vendor = logged_vendor
-    @product = Product.find(params[:id])
-    @this_vendor = Vendor.find(@product.vendor_id)
-    @sales = Sale.where("product_id = #{@product.id}")
+    @product = Product.find_by(id: params[:id])
+    if @product
+      @this_vendor = Vendor.find(@product.vendor_id)
+      @sales = Sale.where("product_id = #{@product.id}")
+    else
+      redirect_to "/all_products"
+    end
   end
 
   def edit
@@ -62,14 +66,6 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @vendor = logged_vendor
     @product.vendor_id == @vendor.id ? true : false
-  end
-
-  def logged_vendor
-    if session[:vendor_id] == nil
-      return nil
-    else
-      Vendor.find(session[:vendor_id])
-    end
   end
 
 end

@@ -61,14 +61,6 @@ class MarketsController < ApplicationController
       @vendor.market_id == @market.id ? true : false
     end
 
-    def logged_vendor
-      if session[:vendor_id] == nil
-        return nil
-      else
-        Vendor.find(session[:vendor_id])
-      end
-    end
-
     def vendors_string(vendors)
       array = vendors.collect { |vendor| vendor.name }
       array.join(', ')

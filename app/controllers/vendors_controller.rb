@@ -73,12 +73,4 @@ class VendorsController < ApplicationController
     params.require(:vendor).permit(:name)
   end
 
-  def logged_vendor
-      if session[:vendor_id] == nil
-        return nil
-      else
-        Vendor.find(session[:vendor_id])
-      end
-    end
-
 end

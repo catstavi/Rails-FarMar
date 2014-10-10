@@ -1,11 +1,20 @@
 <h3><%= @product.name %> </h3>
 
 <p> Vendor: <%= @this_vendor.name %> </p>
-Sales: <% @sales.collect do |sale| %>
-        <p>
-        Amount: $ <%= sale.amount %>, Purchase Date: <%=sale.purchase_time%>
-        </p>
-        <% end %>
+
+Sales:
+<table>
+  <tr class = "coltitles">
+    <td> Amount </td>
+    <td> Purchase Date </td>
+  </tr>
+  <% @sales.collect do |sale| %>
+    <tr>
+      <td> $<%= sale.amount %> </td>
+      <td> <%=sale.purchase_time.month%>-<%=sale.purchase_time.day%>-<%=sale.purchase_time.year%> </td>
+    </tr>
+  <% end %>
+</table>
 
 <% if @product.vendor_id == @vendor.id %>
   <p>
@@ -19,7 +28,7 @@ Sales: <% @sales.collect do |sale| %>
 
     <form action= "/products/<%=@product.id%>" method="POST">
       <input type ="hidden" name="_method" value="DELETE"/>
-      <input type="submit" value="Delete"/>
+      <input type="submit" value="Delete This Product"/>
     </form>
   </p>
 <% end %>

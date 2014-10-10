@@ -1,12 +1,21 @@
 <h3> <%= @vendor.name %>'s Sales </h3>
 
-<h4> Total Sales to Date: <%=@total_sales %> </h4>
+<h4> <%=@sales.count %> Sales to Date, Worth $<%=@total_sales %> </h4>
 
-<!--Make a table!-->
-<ul>
+<!-- is there some way to avoid calling Product here? -->
+<table>
+  <tr class = "coltitles"> <td> Amount </td> <td> Product </td> <td> Date </td> </tr>
 <% @sales.collect do |sale| %>
-  <li>
-  $<%= sale.amount %> -- <%= Product.find(sale.product_id).name %>
-  </li>
+  <tr>
+    <td> $<%= sale.amount %> </td>
+    <td> <%= Product.find(sale.product_id).name %> </td>
+    <td>
+      <% if sale.purchase_time != nil %>
+        <%= sale.purchase_time.month %>-<%=sale.purchase_time.day%>-<%=sale.purchase_time.year%>
+      <% else %>
+        Unknown
+      <% end %>
+    </td>
+  </tr>
 <% end %>
-</ul>
+</table>

@@ -1,8 +1,10 @@
 This is <%= @vendor.name %>'s products page.
 
+<ul>
 <% @products.collect do |product| %>
-    <p>
+    <li>
       <a href ="/products/<%=product.id%>"> <%= product.name %> </a></button>
-    </p>
+    </li>
 
 <% end %>
+</ul>

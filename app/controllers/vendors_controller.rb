@@ -48,7 +48,8 @@ class VendorsController < ApplicationController
     @vendor = logged_vendor
     @this_vendor = Vendor.find_by(id: params[:id])
     if @this_vendor
-      @market = Market.where("id = #{@this_vendor.market_id}")
+      # raise @this_vendor.inspect
+      @market = Market.find_by(id: @this_vendor.market_id)
       products = Product.where("vendor_id = #{@this_vendor.id}")
       @products_list = make_joined_string(products)
     else

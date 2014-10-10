@@ -1,15 +1,20 @@
 This is the markets page.
 
-<% @markets.collect do |market| %>
-  <p>
-    <a href ="/markets/<%=market.id%>"> <%= market.name %> </a>
-
-    <% if @vendor != nil && @vendor.market_id == market.id %>
-      (This is your market!)
-    <% else %>
-      <form action= "/markets/<%=market.id%>" method="POST">
-        <input type="submit" value="Set As My Market"/>
-      </form>
-    <% end %>
-  </p>
-<% end %>
+<table>
+  <% @markets.collect do |market| %>
+      <tr>
+        <td>
+          <a href ="/markets/<%=market.id%>"> <%= market.name %> </a>
+        </td>
+        <td>
+          <% if @vendor != nil && @vendor.market_id == market.id %>
+            (This is your market!)
+          <% else %>
+            <form action= "/markets/<%=market.id%>" method="POST">
+              <input type="submit" value="Set As My Market"/>
+            </form>
+          <% end %>
+        </td>
+    </tr>
+  <% end %>
+</table>

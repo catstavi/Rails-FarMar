@@ -4,7 +4,7 @@ This is the vendors page.
 <% @vendors.collect do |vendor| %>
 	<p>vendor name: <%= vendor.name %> </p>
 
-	<a href ="/vendors/<%=vendor.id%>/edit"> Edit </a>
+	<a href ="/vendors/edit/<%=vendor.id%>"> Edit </a>
 
 <% end %>
 

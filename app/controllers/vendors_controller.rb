@@ -64,7 +64,7 @@ class VendorsController < ApplicationController
   end
 
 
-  
+
   def edit
     # raise params.inspect
     @vendor = Vendor.find(params[:id])
@@ -85,7 +85,6 @@ class VendorsController < ApplicationController
 
 
   def vendor_params
-
     params.require(:vendor).permit(:name)
   end
 

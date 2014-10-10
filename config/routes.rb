@@ -26,6 +26,10 @@ Rails.application.routes.draw do
   put "/products/:id",        to: "products#update"
   delete "/products/:id",     to: "products#delete"
 
+  get "/sales",               to: "sales#display"
+  get "/products/:id/sales/new", to: "sales#new"
+  post "/sales",                 to: "sales#create"
+
   root "vendors#home"
 
   # The priority is based upon order of creation: first created -> highest priority.

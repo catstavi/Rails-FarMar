@@ -8,9 +8,9 @@ Vendor: <%= @this_vendor.name %>
       <a href ="/products/<%=@product.id%>/edit"> Edit </a>
     </button>
 
-    <form action= "/products/<%=@product.id%>" method="POST">
-      <input type="submit" value="Add"/>
-    </form>
+    <button>
+      <a href ="/products/<%=@product.id%>/sales/new"> Add a Sale </a>
+    </button>
 
     <form action= "/products/<%=@product.id%>" method="POST">
       <input type ="hidden" name="_method" value="DELETE"/>

@@ -60,7 +60,11 @@ class ProductsController < ApplicationController
   end
 
   def logged_vendor
-    Vendor.find(session[:vendor_id])
+    if session[:vendor_id] == nil
+      return nil
+    else
+      Vendor.find(session[:vendor_id])
+    end
   end
 
 end

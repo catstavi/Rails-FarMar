@@ -1,8 +1,12 @@
 class ProductsController < ApplicationController
 
-  def display #name of the erb file
+  def display_my #name of the erb file
     @vendor = logged_vendor
     @products = Product.where("vendor_id = #{session[:vendor_id]}")
+  end
+
+  def display_all
+    @products = Product.all
   end
 
   def new

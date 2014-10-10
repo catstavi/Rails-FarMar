@@ -1,0 +1,8 @@
+<h3> All Products </h3>
+<% @products.collect do |product| %>
+    <ul>
+      <li>
+        <a href ="/products/<%=product.id%>"> <%= product.name %> </a></button>
+      </li>
+    </ul>
+<% end %>

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get  "/signup",             to: "vendors#new"
   get "/vendors",             to: "vendors#display"
   post "/login",              to: "vendors#login"
-  post "/logout",             to: "vendors#logout"
+  get "/logout",             to: "vendors#logout"
   get "/vendors/:id/edit",    to: "vendors#edit", as: :edit_vendor
   put "/vendors/:id",         to: "vendors#update"
 
@@ -18,7 +18,8 @@ Rails.application.routes.draw do
   put "/markets/:id",         to: "markets#update"
   post "/markets/:id",        to: "vendors#set_market"
 
-  get "/products",            to: "products#display"
+  get "/products",            to: "products#display_my"
+  get "/all_products",         to: "products#display_all"
   get "/products/new",        to: "products#new"
   post "/products",           to: "products#create"
   get "/products/:id",        to: "products#by_id"

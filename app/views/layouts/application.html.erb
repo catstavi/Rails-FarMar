@@ -13,23 +13,41 @@
       <h1 id= "main-title">The Farthest Mar</h1>
     </div>
   </header>
+
   <div id= "navbar">
     <ul id= "navlinks">
+      <% if defined? @vendor %>
+        <li>
+          <a href="/logout">Log out</a>
+        </li>
+        <li>
+          <a href="/products">My Products</a>
+        </li>
+        <li>
+          <a href="/sales">My Sales</a>
+        </li>
+        <li>
+          <a href="/vendor/<%=@vendor.id%>">My Profile*</a>
+        </li>
+        <li>
+          <a href="/products/new">Add a Product</a>
+        </li>
+      <% end %>
       <li>
-        Link1
+        <a href ="/markets">All Markets</a>
       </li>
       <li>
-        Link2
+        <a href="/all_products/">All Products*</a>
       </li>
       <li>
-        Link3
+        <a href= "/vendors"> All Vendors</a>
       </li>
     </ul>
   </div>
 
   <%= yield %>
   <footer>
-    Links: Put links here to: Log Out, view my 'profile' edit my profile, add a market, view my market, view all markets, view my products, view my sales.
+    Author line?
   </footer>
 </body>
 </html>

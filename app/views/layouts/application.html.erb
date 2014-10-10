@@ -16,7 +16,8 @@
 
   <div id= "navbar">
     <ul id= "navlinks">
-      <% if defined? @vendor %>
+      <!--If you are logged in-->
+      <% if @vendor %>
         <li>
           <a href="/logout">Log out</a>
         </li>
@@ -27,23 +28,25 @@
           <a href="/sales">My Sales</a>
         </li>
         <li>
-          <a href="/vendor/<%=@vendor.id%>">My Profile*</a>
+          <a href="/vendors/<%=@vendor.id%>">My Profile</a>
+        </li>
+        <li>
+          <a href="/markets/<%=@vendor.market_id%>"> My Market </a>
         </li>
       <% else %>
         <li>
           <a href="/">Sign in</a>
         </li>
       <% end %>
-
-      <li>
-        <a href ="/markets">All Markets</a>
-      </li>
-      <li>
-        <a href="/all_products/">All Products</a>
-      </li>
-      <li>
-        <a href= "/vendors"> All Vendors</a>
-      </li>
+        <li>
+          <a href="/markets">All Markets</a>
+        </li>
+        <li>
+          <a href="/all_products/">All Products</a>
+        </li>
+        <li>
+          <a href= "/vendors"> All Vendors</a>
+        </li>
     </ul>
   </div>
 

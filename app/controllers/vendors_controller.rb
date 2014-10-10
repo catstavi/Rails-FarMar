@@ -46,7 +46,7 @@ class VendorsController < ApplicationController
 
   def by_id
     @vendor = logged_vendor
-    @this_vendor = Vendor.find_by(params[:id])
+    @this_vendor = Vendor.find_by(id: params[:id])
     if @this_vendor
       @market = Market.where("id = #{@this_vendor.market_id}")
       products = Product.where("vendor_id = #{@this_vendor.id}")

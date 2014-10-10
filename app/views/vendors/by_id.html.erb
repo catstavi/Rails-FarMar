@@ -1,4 +1,8 @@
 <h2>Hi <%=@this_vendor.name  %>!</h2>
 <br>
-<p>Your current market is: <%= @market.name %> </p>
+
+<% if @market %>
+	<p>Your current market is: <%= @market.name %> </p>
+<% end %>
+
 <p>List of Current Products: <%= @products_list %></p>

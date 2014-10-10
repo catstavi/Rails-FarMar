@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get "/vendors",             to: "vendors#display"
   post "/login",              to: "vendors#login"
   post "/logout",             to: "vendors#logout"
+  get "/vendors/:id/edit",    to: "vendors#edit", as: :edit_vendor
+  put "/vendors/:id",         to: "vendors#update"
 
   get "/markets",             to: "markets#display" # market/display.html.erb
   get "/make_market",         to:  "markets#new"
@@ -14,7 +16,7 @@ Rails.application.routes.draw do
   get "/markets/:id",         to: "markets#by_id"
   get "/markets/:id/edit",    to: "markets#edit"
   put "/markets/:id",         to: "markets#update"
-  post "/markets/:id",       to: "vendors#set_market"
+  post "/markets/:id",        to: "vendors#set_market"
 
   get "/products",            to: "products#display"
   get "/products/new",        to: "products#new"
@@ -23,10 +25,6 @@ Rails.application.routes.draw do
   get "/products/:id/edit",   to: "products#edit"
   put "/products/:id",        to: "products#update"
   delete "/products/:id",     to: "products#delete"
-
-
-  get "/vendors/:id/edit", to: "vendors#edit", as: :edit_vendor
-  put "/vendors/:id",    to: "vendors#update"
 
   root "vendors#home"
 

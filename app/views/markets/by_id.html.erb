@@ -7,7 +7,7 @@ Vendors: <%= @vendor_list %>
 <button> <a href ="/markets"> Back to Markets </a> </button>
 
 <!-- Only gives option to delete/edit if it's set as your market-->
-<% if @vendor.market_id == @market.id %>
+<% if @vendor != nil && @vendor.market_id == @market.id %>
   <p>
     <button> <a href ="/markets/<%=@market.id%>/edit"> Edit </a></button>
     <form action= "/products/<%=@market.id%>" method="POST">

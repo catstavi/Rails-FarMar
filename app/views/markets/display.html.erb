@@ -4,7 +4,7 @@ This is the markets page.
   <p>
     <a href ="/markets/<%=market.id%>"> <%= market.name %> </a>
 
-    <% if @vendor.market_id == market.id %>
+    <% if @vendor != nil && @vendor.market_id == market.id %>
       (This is your market!)
     <% else %>
       <form action= "/markets/<%=market.id%>" method="POST">

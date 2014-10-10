@@ -60,7 +60,11 @@ class MarketsController < ApplicationController
     end
 
     def logged_vendor
-      Vendor.find(session[:vendor_id])
+      if session[:vendor] == nil
+        return nil
+      else
+        Vendor.find(session[:vendor_id])
+      end
     end
 
     def vendors_string(vendors)

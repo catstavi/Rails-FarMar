@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   get "/sales",               to: "sales#display"
   get "/products/:id/sales/new", to: "sales#new"
   post "/sales",                 to: "sales#create"
+  
 
   root "vendors#home"
 

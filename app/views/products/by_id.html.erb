@@ -1,6 +1,11 @@
 <h3><%= @product.name %> </h3>
 
-Vendor: <%= @this_vendor.name %>
+<p> Vendor: <%= @this_vendor.name %> </p>
+Sales: <% @sales.collect do |sale| %>
+        <p>
+        Amount: $ <%= sale.amount %>, Purchase Date: <%=sale.purchase_time%>
+        </p>
+        <% end %>
 
 <% if @product.vendor_id == @vendor.id %>
   <p>

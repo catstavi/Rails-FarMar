@@ -23,6 +23,7 @@ class ProductsController < ApplicationController
     @vendor = logged_vendor
     @product = Product.find(params[:id])
     @this_vendor = Vendor.find(@product.vendor_id)
+    @sales = Sale.where("product_id = #{@product.id}")
   end
 
   def edit

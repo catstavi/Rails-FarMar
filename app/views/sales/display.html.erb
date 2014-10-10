@@ -1,9 +1,12 @@
-<!-- <h3> <%= @vendor.name %>'s Sales </h3> -->
+<h3> <%= @vendor.name %>'s Sales </h3>
+
+<h4> Total Sales to Date: <%=@total_sales %> </h4>
 
 <!--Make a table!-->
-<!--
-<% @sales.each do |sale| %>
-  $<%= sale.amount*0.01 %>, <%= Product.find(sale.product_id) %>
-<% end %> -->
-
-texttext
+<ul>
+<% @sales.collect do |sale| %>
+  <li>
+  $<%= sale.amount %> -- <%= Product.find(sale.product_id).name %>
+  </li>
+<% end %>
+</ul>

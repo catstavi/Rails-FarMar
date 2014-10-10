@@ -52,6 +52,13 @@ class VendorsController < ApplicationController
     redirect_to "/markets"
   end
 
+  def by_id
+    @this_vendor = Vendor.find(params[:id])
+    @vendor = logged_vendor
+    #vendors = Vendor.where("market_id = #{@market.id}")
+    #@vendor_list = vendors_string(vendors)
+  end
+
   private
 
   def good_id?(id)
@@ -87,5 +94,13 @@ class VendorsController < ApplicationController
   def vendor_params
     params.require(:vendor).permit(:name)
   end
+
+  def logged_vendor
+      if session[:vendor_id] == nil
+        return nil
+      else
+        Vendor.find(session[:vendor_id])
+      end
+    end
 
 end

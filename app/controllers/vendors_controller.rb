@@ -48,7 +48,6 @@ class VendorsController < ApplicationController
     @vendor = logged_vendor
     @this_vendor = Vendor.find_by(id: params[:id])
     if @this_vendor
-      # raise @this_vendor.inspect
       @market = Market.find_by(id: @this_vendor.market_id)
       products = Product.where("vendor_id = #{@this_vendor.id}")
       @products_list = make_joined_string(products)
@@ -57,18 +56,31 @@ class VendorsController < ApplicationController
     end
   end
 
+  def delete
+    @vendor = logged_vendor
+    if @vendor.id == params[:id]     #the logged vendor can only delete themselves
+      @sales = Sale.where("vendor_id = #{@vendor.id}")
+      @sales.each { |sale| sale.destroy }
+      @products = Product.where("vendor_id = #{@vendor.id}")
+      @products.each { |product| product.destroy }
+      @vendor.destroy
+      session[:id] = nil
+      redirect_to "/products"
+    else
+      redirect_to "/products"
+    end
+  end
+
   private
 
   def edit
-    # raise params.inspect
     @vendor = Vendor.find(params[:id])
   end
 
   def update
-    #raise params.inspect
     @vendor = Vendor.find(params[:id])
     if @vendor.update(vendor_params)
-    redirect_to "/vendors" #changed here! - this should help redirect to /vendors after an edit has been made
+      redirect_to "/vendors" #changed here! - this should help redirect to /vendors after an edit has been made
     else
       render :edit
     end

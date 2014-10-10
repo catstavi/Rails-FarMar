@@ -49,6 +49,8 @@ class ProductsController < ApplicationController
 
   def delete
     if your_product?     #only the owner of the product can delete it
+      @sales = Sale.where("product_id = #{@product.id}")
+      @sales.each { |sale| sale.destroy }
       @product.destroy
       redirect_to "/products"
     else

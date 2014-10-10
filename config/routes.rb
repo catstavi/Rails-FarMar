@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get "/vendors/:id/edit",    to: "vendors#edit", as: :edit_vendor
   put "/vendors/:id",         to: "vendors#update"
   get "/vendors/:id",         to: "vendors#by_id"
+  delete "/vendors/:id",     to: "vendors#delete"
 
   get "/markets",             to: "markets#display" # market/display.html.erb
   get "/markets/new",         to:  "markets#new"

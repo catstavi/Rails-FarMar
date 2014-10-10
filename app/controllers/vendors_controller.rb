@@ -1,16 +1,12 @@
 class VendorsController < ApplicationController
 
   def login
-    if good_id?(params[:vendor][:id]) #id doesn't exist
-      @vendor = Vendor.find(params[:vendor][:id])
-      if @vendor.name != params[:vendor][:name] #id and name don't match
-        redirect_to "/404"
-      else
-        session[:vendor_id] = @vendor.id
-        redirect_to root_path
-      end
+    @vendor = Vendor.find_by(id: params[:vendor][:id])
+    if !@vendor || @vendor.name != params[:vendor][:name] #id and name don't match
+      redirect_to "/"
     else
-      redirect_to "/404"
+      session[:vendor_id] = @vendor.id
+      redirect_to root_path
     end
   end
 
@@ -32,10 +28,6 @@ class VendorsController < ApplicationController
     @vendors = Vendor.all
   end
 
-  def new
-    @vendor = Vendor.new
-  end
-
   def create
     @vendor = Vendor.new(params.require(:vendor).permit(:name))
     if @vendor.save
@@ -53,54 +45,36 @@ class VendorsController < ApplicationController
   end
 
   def by_id
-    @this_vendor = Vendor.find(params[:id])
     @vendor = logged_vendor
-    #vendors = Vendor.where("market_id = #{@market.id}")
-    #@vendor_list = vendors_string(vendors)
-  end
-
-  private
-
-  def good_id?(id)
-    id_int = id.to_i
-    if (id_int > Vendor.count) || (id_int <= 0)
-      return false
+    @this_vendor = Vendor.find_by(params[:id])
+    if @this_vendor
+      @market = Market.where("id = #{@this_vendor.market_id}")
+      products = Product.where("vendor_id = #{@this_vendor.id}")
+      @products_list = make_joined_string(products)
     else
-      return true
+      redirect_to "/vendors"
     end
   end
 
-
+  private
 
   def edit
     # raise params.inspect
     @vendor = Vendor.find(params[:id])
   end
 
-
-
   def update
     #raise params.inspect
     @vendor = Vendor.find(params[:id])
     if @vendor.update(vendor_params)
     redirect_to "/vendors" #changed here! - this should help redirect to /vendors after an edit has been made
-
     else
       render :edit
     end
   end
 
-
   def vendor_params
     params.require(:vendor).permit(:name)
   end
-
-  def logged_vendor
-      if session[:vendor_id] == nil
-        return nil
-      else
-        Vendor.find(session[:vendor_id])
-      end
-    end
 
 end

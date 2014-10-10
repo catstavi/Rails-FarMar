@@ -29,14 +29,6 @@ class SalesController < ApplicationController
 
   private
 
-  def logged_vendor
-    if session[:vendor_id] == nil
-      return nil
-    else
-      Vendor.find(session[:vendor_id])
-    end
-  end
-
   def sale_params
     params.require(:sale).permit(:amount, :purchase_time, :vendor_id, :product_id)
   end

@@ -29,15 +29,17 @@
         <li>
           <a href="/vendor/<%=@vendor.id%>">My Profile*</a>
         </li>
+      <% else %>
         <li>
-          <a href="/products/new">Add a Product</a>
+          <a href="/">Sign in</a>
         </li>
       <% end %>
+
       <li>
         <a href ="/markets">All Markets</a>
       </li>
       <li>
-        <a href="/all_products/">All Products*</a>
+        <a href="/all_products/">All Products</a>
       </li>
       <li>
         <a href= "/vendors"> All Vendors</a>

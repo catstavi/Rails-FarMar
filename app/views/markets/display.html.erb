@@ -7,13 +7,15 @@ This is the markets page.
           <a href ="/markets/<%=market.id%>"> <%= market.name %> </a>
         </td>
         <td>
-          <% if @vendor != nil && @vendor.market_id == market.id %>
-            (This is your market!)
-          <% else %>
-            <form action= "/markets/<%=market.id%>" method="POST">
-              <input type="submit" value="Set As My Market"/>
-            </form>
-          <% end %>
+          <% if defined? @vendor %>
+            <% if @vendor.market_id == market.id %>
+              (This is your market!)
+            <% else %>
+              <form action= "/markets/<%=market.id%>" method="POST">
+                <input type="submit" value="Set As My Market"/>
+              </form>
+            <% end %>
+          <% end %> 
         </td>
     </tr>
   <% end %>

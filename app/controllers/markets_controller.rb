@@ -2,7 +2,9 @@ class MarketsController < ApplicationController
 
   def display #name of the erb file
     @markets = Market.all
-    @vendor = logged_vendor
+    if logged_vendor
+      @vendor = logged_vendor
+    end
   end
 
   def new
@@ -19,10 +21,14 @@ class MarketsController < ApplicationController
   end
 
   def by_id
-    @market = Market.find(params[:id])
     @vendor = logged_vendor
-    vendors = Vendor.where("market_id = #{@market.id}")
-    @vendor_list = vendors_string(vendors)
+    @market = Market.find_by(id: params[:id])
+    if @market
+      vendors = Vendor.where("market_id = #{@market.id}")
+      @vendor_list = make_joined_string(vendors)
+    else
+      redirect_to "/markets"
+    end
   end
 
   def edit
@@ -57,14 +63,6 @@ class MarketsController < ApplicationController
       @market = Market.find(params[:id])
       @vendor = logged_vendor
       @vendor.market_id == @market.id ? true : false
-    end
-
-    def logged_vendor
-      if session[:vendor_id] == nil
-        return nil
-      else
-        Vendor.find(session[:vendor_id])
-      end
     end
 
     def vendors_string(vendors)

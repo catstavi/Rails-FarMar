@@ -2,15 +2,34 @@
 <html>
 <head>
   <title>RailsFarmar</title>
+    <link type = "text/css" rel= "stylesheet" href = "/assets/stylesheets/resets.css" />
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <header>
+    <div class= "layer">
+      <h1 id= "main-title">The Farthest Mar</h1>
+    </div>
+  </header>
+  <div id= "navbar">
+    <ul id= "navlinks">
+      <li>
+        Link1
+      </li>
+      <li>
+        Link2
+      </li>
+      <li>
+        Link3
+      </li>
+    </ul>
+  </div>
 
-<%= yield %>
-<footer>
-  Links: Put links here to: Log Out, view my 'profile' edit my profile, add a market, view my market, view all markets, view my products, view my sales.
-</footer>
+  <%= yield %>
+  <footer>
+    Links: Put links here to: Log Out, view my 'profile' edit my profile, add a market, view my market, view all markets, view my products, view my sales.
+  </footer>
 </body>
 </html>

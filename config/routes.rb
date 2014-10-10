@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   put "/vendors/:id",         to: "vendors#update"
 
   get "/markets",             to: "markets#display" # market/display.html.erb
-  get "/make_market",         to:  "markets#new"
+  get "/markets/new",         to:  "markets#new"
   post "/markets",            to: "markets#create"
   get "/markets/:id",         to: "markets#by_id"
   get "/markets/:id/edit",    to: "markets#edit"
@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   get "/sales",               to: "sales#display"
   get "/products/:id/sales/new", to: "sales#new"
   post "/sales",                 to: "sales#create"
-  
+
 
   root "vendors#home"
 

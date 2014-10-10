@@ -11,7 +11,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def make_joined_string(array)
+  def make_joined_string(array_of_obj)
+    array = array_of_obj.collect { |obj| obj.name }
     array.join(', ')
   end
 

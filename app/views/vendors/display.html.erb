@@ -1,10 +1,10 @@
 <body id="showVendors">
-This is the vendors page.
+All Vendors
 
 <% @vendors.collect do |vendor| %>
-	<p>vendor name: <%= vendor.name %> </p>
-
-	<a href ="/vendors/edit/<%=vendor.id%>"> Edit </a>
+	<li>
+		<a href= "/vendors/<%= vendor.id %>"><%= vendor.name %></a>
+	</li>
 
 <% end %>
 

@@ -6,6 +6,7 @@ class ProductsController < ApplicationController
   end
 
   def display_all
+    @vendor = logged_vendor
     @products = Product.all
   end
 
@@ -35,6 +36,7 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    @vendor = logged_vendor
     @product = Product.find(params[:id])
   end
 

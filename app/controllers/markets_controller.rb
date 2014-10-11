@@ -1,13 +1,12 @@
 class MarketsController < ApplicationController
 
   def display #name of the erb file
+    @vendor = logged_vendor
     @markets = Market.all
-    if logged_vendor
-      @vendor = logged_vendor
-    end
   end
 
   def new
+    @vendor = logged_vendor
     @market = Market.new
   end
 
@@ -46,6 +45,8 @@ class MarketsController < ApplicationController
 
   def delete
     if your_market?      #only the owner of the product can delete it
+      vendors = Vendor.find_by("market_id: #{@market.id}")
+      vendors.each { |vendor| vendor.market_id = nil }
       @market.destroy
       redirect_to "/markets"
     else
@@ -63,11 +64,6 @@ class MarketsController < ApplicationController
       @market = Market.find(params[:id])
       @vendor = logged_vendor
       @vendor.market_id == @market.id ? true : false
-    end
-
-    def vendors_string(vendors)
-      array = vendors.collect { |vendor| vendor.name }
-      array.join(', ')
     end
 
 end

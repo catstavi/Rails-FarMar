@@ -1,8 +1,20 @@
-<h2>Hi <%=@this_vendor.name  %>!</h2>
-<br>
+<h3><%=@this_vendor.name%></h3>
+<p>Registered on <%= @this_vendor.created_at.month %>-<%= @this_vendor.created_at.day %>-<%= @this_vendor.created_at.year %>
 
 <% if @market %>
-	<p>Your current market is: <%= @market.name %> </p>
+	<p>Current Market: <%= @market.name %> </p>
 <% end %>
 
-<p>List of Current Products: <%= @products_list %></p>
+<% if @products_list.length > 0 %>
+	<p>Current Products: <%= @products_list %></p>
+<% end %>
+
+<% if @this_vendor == @vendor %>
+	<a href= "/vendors/<%= @vendor.id %>/edit">Edit Your Information</a>
+
+	<form action= "/products/<%=@product.id%>" method="POST">
+		<input type ="hidden" name="_method" value="DELETE"/>
+		<input type="submit" value="Delete Your Account"/>
+	</form>
+
+<% end %>

@@ -6,12 +6,6 @@ class SalesController < ApplicationController
     @total_sales = sum_sales(@sales)
   end
 
-  def sum_sales(sales)
-    sum = 0
-    sales.each {|sale| sum += sale.amount}
-    sum
-  end
-
   def new
     @sale = Sale.new
     @product = Product.find(params[:id])
@@ -28,6 +22,12 @@ class SalesController < ApplicationController
   end
 
   private
+
+  def sum_sales(sales)
+    sum = 0
+    sales.each {|sale| sum += sale.amount}
+    sum
+  end
 
   def sale_params
     params.require(:sale).permit(:amount, :purchase_time, :vendor_id, :product_id)

@@ -14,24 +14,26 @@
  *= require_self
  */
 
-#showVendors{
-  background-color: pink;
-  margin: 0;
-}
-
 #main-title {
-  font-size: 3em;
-  font-family: sans-serif;
+  font-size: 3.5em;
+  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+  color: #732116;
+  // color: white;
   padding-top: 10vh;
   padding-left: 5vw;
   margin: 0;
+  letter-spacing: 0.08em;
+}
+
+button {
+  color: white;
+  background-color: orange;
 }
 
 header {
   background-image: url(image-path('lorieklodafruitswide.jpg'));
   background-size: cover;
   margin: 0;
-  // border-bottom: .3em solid black;
   height: 30vh;
   width: 100vw;
 }
@@ -39,9 +41,10 @@ header {
 #navbar {
   height: 5vh;
   width: 100vw;
-  background-color: green;
+  background-color: #F8AD2D;
   margin: 0;
   padding-top: .6em;
+
 }
 
 #navlinks li {
@@ -49,6 +52,7 @@ header {
   display: inline;
   padding-left: 3vw;
   margin: 0;
+
 }
 
 .layer {
@@ -63,4 +67,57 @@ body {
   margin: 0;
   border: 0;
   padding: 0;
+  background-color: #F1DFA4
+}
+
+html {
+  font-family: 'Arvo', serif;
+  color: #542000;
+  font-size: 1.15em;
+}
+
+table {
+  margin: 1em;
+}
+
+a {
+  text-decoration: none;
+  color: #994A01;
+}
+
+a:visited {
+  color: #994A01;
+}
+
+a:hover {
+  color: #A3328A;
+}
+
+.content {
+  padding: 5vw;
+  padding-top: 2vw;
+}
+
+li {
+  margin: 1.5em;
+}
+
+td {
+  padding-bottom: 1em;
+  padding-right: 1.5em;
+}
+
+h2 {
+  font-size: 2em;
+  margin: .3em;
+}
+
+h3 {
+  font-size: 1.5em;
+  margin: .3em;
+}
+
+footer {
+  margin: 2em;
+  font-size: .8em;
 }

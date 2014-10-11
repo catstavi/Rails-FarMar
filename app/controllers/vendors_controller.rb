@@ -25,7 +25,16 @@ class VendorsController < ApplicationController
   end
 
   def display
+    @vendor = logged_vendor
     @vendors = Vendor.all
+  end
+
+  def new
+    if logged_vendor
+      redirect_to "/"
+    else
+      @vendor = Vendor.new
+    end
   end
 
   def create
@@ -39,7 +48,7 @@ class VendorsController < ApplicationController
   end
 
   def set_market
-    @vendor = Vendor.find(session[:vendor_id])
+    @vendor = logged_vendor
     @vendor.update_attribute(:market_id, params[:id])
     redirect_to "/markets"
   end

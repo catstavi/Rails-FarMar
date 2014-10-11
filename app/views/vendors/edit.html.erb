@@ -1,9 +1,10 @@
-<h2>Edit vendor: <%= @vendor.name %></h2>
+<h3>Edit your information.</h2>
 
-<h3> this is the vendors edit page</h3>
-<form action="/vendors/<%= @vendor.id %>" method="POST"> <!-- if there is no action, it submits to same page-->
-  <input type="hidden" name="_method" value="PUT">
-  Title<input type="text" name="vendor[name]" value="<%= @vendor.name %>"/>
-  
-  <input type="submit" />
+<form action= "/vendors/<%=@vendor.id%>" method="POST">
+  <input type ="hidden" name="_method" value="PUT"/>
+  <!-- <input type="hidden" name="market[id]" value="<%=@market.id%>"/> -->
+  Your Name: <input type="text" name="vendor[name]" value="<%=@vendor.name%>"/>
+  <!-- Have them select from available Markets?-->
+  <!-- Your Market: <input type="text" name="vendor[market_id]" value="<%=@vendor.market_id%>"/> -->
+  <input type="submit" value="Update Profile"/>
 </form>

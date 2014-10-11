@@ -7,7 +7,7 @@ This is the markets page.
           <a href ="/markets/<%=market.id%>"> <%= market.name %> </a>
         </td>
         <td>
-          <% if defined? @vendor %>
+          <% if @vendor%>
             <% if @vendor.market_id == market.id %>
               (This is your market!)
             <% else %>
@@ -15,7 +15,7 @@ This is the markets page.
                 <input type="submit" value="Set As My Market"/>
               </form>
             <% end %>
-          <% end %> 
+          <% end %>
         </td>
     </tr>
   <% end %>

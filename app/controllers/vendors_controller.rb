@@ -40,6 +40,7 @@ class VendorsController < ApplicationController
   def create
     @vendor = Vendor.new(params.require(:vendor).permit(:name))
     if @vendor.save
+      session[:vendor_id] = @vendor.id
       redirect_to root_path
     else
       render :new
@@ -65,35 +66,35 @@ class VendorsController < ApplicationController
     end
   end
 
+  def edit
+    @vendor = Vendor.find(params[:id])
+  end
+
   def delete
     @vendor = logged_vendor
-    if @vendor.id == params[:id]     #the logged vendor can only delete themselves
+    if @vendor.id.to_s == params[:id]     #the logged vendor can only delete themselves
       @sales = Sale.where("vendor_id = #{@vendor.id}")
       @sales.each { |sale| sale.destroy }
       @products = Product.where("vendor_id = #{@vendor.id}")
       @products.each { |product| product.destroy }
       @vendor.destroy
-      session[:id] = nil
-      redirect_to "/products"
+      session[:vendor_id] = nil
+      redirect_to "/"
     else
-      redirect_to "/products"
+      redirect_to "/vendors"
     end
-  end
-
-  private
-
-  def edit
-    @vendor = Vendor.find(params[:id])
   end
 
   def update
     @vendor = Vendor.find(params[:id])
     if @vendor.update(vendor_params)
-      redirect_to "/vendors" #changed here! - this should help redirect to /vendors after an edit has been made
+      redirect_to "/vendors/#{@vendor.id}" #changed here! - this should help redirect to /vendors after an edit has been made
     else
       render :edit
     end
   end
+
+  private
 
   def vendor_params
     params.require(:vendor).permit(:name)

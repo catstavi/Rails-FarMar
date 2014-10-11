@@ -10,9 +10,10 @@
 <% end %>
 
 <% if @this_vendor == @vendor %>
+<p>
 	<a href= "/vendors/<%= @vendor.id %>/edit">Edit Your Information</a>
-
-	<form action= "/products/<%=@product.id%>" method="POST">
+</p>
+	<form action= "/vendors/<%=@vendor.id%>" method="POST">
 		<input type ="hidden" name="_method" value="DELETE"/>
 		<input type="submit" value="Delete Your Account"/>
 	</form>

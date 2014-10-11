@@ -2,8 +2,9 @@
 
 <p> Vendor: <%= @this_vendor.name %> </p>
 
-Sales:
+
 <table>
+  <tr><th>Sales<th></tr>
   <tr class = "coltitles">
     <td> Amount </td>
     <td> Purchase Date </td>
@@ -16,7 +17,7 @@ Sales:
   <% end %>
 </table>
 
-<% if @product.vendor_id == @vendor.id %>
+<% if @vendor != nil && @product.vendor_id == @vendor.id %>
   <p>
     <button>
       <a href ="/products/<%=@product.id%>/edit"> Edit </a>

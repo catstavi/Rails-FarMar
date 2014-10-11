@@ -4,11 +4,7 @@ class ApplicationController < ActionController::Base
   # protect_from_forgery with: :exception
 
   def logged_vendor
-    if session[:vendor_id] == nil
-      return nil
-    else
-      Vendor.find(session[:vendor_id])
-    end
+    Vendor.find_by(id: session[:vendor_id])
   end
 
   def make_joined_string(array_of_obj)

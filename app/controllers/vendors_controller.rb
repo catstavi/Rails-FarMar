@@ -9,7 +9,7 @@ class VendorsController < ApplicationController
       redirect_to root_path
     end
   end
-
+  
   def home
     if session[:vendor_id] != nil
       @vendor = Vendor.find(session[:vendor_id])

@@ -1,14 +1,24 @@
+<% provide(:title, 'Home')%> 
+
 <% if @vendor %>
   <h2>Welcome <%= @vendor.name %>!</h2>
   <h3> Your Id is # <%= @vendor.id %> </h3>
-  <section>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-  </section>
 
 <% else %>
   <h2> Welcome Guest! </h2>
+<% end %>
+
+<section>
+  <p>The Farthest Mar is a gathering spot for vendors and customers alike!</p>
+  <p>It's a collection of user contruibuted data on Vendors, Markets, Products and
+  Sales. Get started now by adding some products, selecting or adding your market. Check
+  out what other vendors at your market are offering!</p>
+</section>
+
+<% if !@vendor %>
 
   <section>
+    <br>
     Please log in!
 
     <form action="/login" method="POST" >
@@ -16,11 +26,11 @@
       <input type="text" name="vendor[name]" />
       Vendor ID:
       <input type="text" name="vendor[id]" />
-
       <input type="submit" value="Login">
     </form>
 
-
-    <p>Or <a href="/signup">sign up</a>!</p>
+    <br>
+    <p>Don't have an account yet? <a href="/signup">Sign up</a>!</p>
   </section>
+
 <% end %>

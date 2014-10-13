@@ -11,6 +11,7 @@ class MarketsController < ApplicationController
   end
 
   def create
+    @vendor = logged_vendor
     @market = Market.new(market_params)
     if @market.save
       redirect_to "/markets"

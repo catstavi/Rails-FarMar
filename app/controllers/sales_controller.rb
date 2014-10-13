@@ -13,6 +13,7 @@ class SalesController < ApplicationController
   end
 
   def create
+    @vendor = logged_vendor
     @sale = Sale.new(sale_params)
     if @sale.save
       redirect_to "/products/#{params[:sale][:product_id]}"

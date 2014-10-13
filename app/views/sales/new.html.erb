@@ -4,7 +4,7 @@
 
 <form action= "/sales" method="POST">
 
-  Sale Amount: <input type="text" name="sale[amount]" value="<%=@sale.amount%>"/>
+  Sale Amount: $<input type="text" name="sale[amount]" value="<%=@sale.amount%>"/>
   Purchase Date (YYYY-MM-DD): <input type="text" name="sale[purchase_time]" value="<%=@sale.purchase_time%>"/>
   <input type="hidden" name="sale[vendor_id]" value="<%=@vendor.id%>" />
   <input type="hidden" name="sale[product_id]" value="<%=@product.id%>" />

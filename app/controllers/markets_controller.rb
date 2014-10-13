@@ -25,6 +25,11 @@ class MarketsController < ApplicationController
     if @market
       vendors = Vendor.where("market_id = #{@market.id}")
       @vendor_list = make_joined_string(vendors)
+      products = vendors.collect do |vendor|
+        Product.where("vendor_id = #{vendor.id}")
+      end
+      products.flatten!
+      @product_list = make_joined_string(products)
     else
       redirect_to "/markets"
     end
